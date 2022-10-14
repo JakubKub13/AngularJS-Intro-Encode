@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getContractAddress().subscribe((response) => {
-      this.tokenContractAddress = response;
+      this.tokenContractAddress = response.result;
     });
     this.wallet = ethers.Wallet.createRandom();
     this.walletAddress = this.wallet.address;

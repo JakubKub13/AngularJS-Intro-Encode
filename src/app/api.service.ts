@@ -9,7 +9,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getContractAddress(): Observable<string> {
-    return this.http.get<string>("http://localhost:3000/token-address");
+  getContractAddress(): Observable<any> {
+    return this.http.get("http://localhost:3000/token-address");
   }
 }
