@@ -1,6 +1,8 @@
 <div class="container px-4 py-5">
     <h2 class="pb-2 border-bottom">Dashboard info:</h2>
+    <p>Connected to the token at address: {{ tokenContractAddress }} </p>
     <p>Your wallet address is: {{ walletAddress }}</p>
     <p>This wallet has a balance of: {{ etherBalance }}</p>
+    <button class="btn btn-primary my-2" (click)="doAction()">Action(Create new Wallet)</button>
 </div>
 
