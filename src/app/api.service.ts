@@ -12,4 +12,8 @@ export class ApiService {
   getContractAddress(): Observable<any> {
     return this.http.get("http://localhost:3000/token-address");
   }
+
+  getTotalSupply(): Observable<any> {
+    return this.http.get("http://localhost:3000/total-supply");
+  }
 }

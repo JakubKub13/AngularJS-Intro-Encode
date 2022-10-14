@@ -9,12 +9,14 @@ import { ApiService } from '../api.service';
 })
 export class DashboardComponent implements OnInit {
   tokenContractAddress: string;
+  tokenTotalSupply: string;
   walletAddress: string;
   wallet: ethers.Wallet | undefined;
   etherBalance: string;
   provider: ethers.providers.BaseProvider;
 
   constructor(private apiService: ApiService) {
+    this.tokenTotalSupply = "Loading.....";
     this.walletAddress = "Loading.....";
     this.etherBalance = "Loading.....";
     this.tokenContractAddress = "";
@@ -25,6 +27,9 @@ export class DashboardComponent implements OnInit {
     this.apiService.getContractAddress().subscribe((response) => {
       this.tokenContractAddress = response.result;
     });
+    this.apiService.getTotalSupply().subscribe((response) => {
+      this.tokenTotalSupply = response.result + " Tokens";
+    })
     this.wallet = ethers.Wallet.createRandom();
     this.walletAddress = this.wallet.address;
     this.provider.getBalance(this.walletAddress).then((balanceBN) => {
