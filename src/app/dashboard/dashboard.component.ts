@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ethers, Signer } from 'ethers';
 import { ApiService } from '../api.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,12 @@ export class DashboardComponent implements OnInit {
   etherBalance: string;
   provider: ethers.providers.BaseProvider;
 
-  constructor(private apiService: ApiService) {
+  claimForm = this.fb.group({
+    name: [''],
+    id: [''],
+  });
+
+  constructor(private apiService: ApiService, private fb: FormBuilder) {
     this.tokenTotalSupply = "Loading.....";
     this.walletAddress = "Loading.....";
     this.etherBalance = "Loading.....";
@@ -37,8 +43,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  doAction() {
-    this.wallet = ethers.Wallet.createRandom();
-    this.walletAddress = this.wallet.address;
+  request() {
+    const body = {name: this.claimForm.value.name, id: this.claimForm.value.id};
+    this.apiService.requestTokens(body).subscribe((result) => {console.log(result)});
   }
 }

@@ -16,4 +16,8 @@ export class ApiService {
   getTotalSupply(): Observable<any> {
     return this.http.get("http://localhost:3000/total-supply");
   }
+
+  requestTokens(body: any) {
+    return this.http.post("http://localhost:3000/request-voting-tokens", body);
+  }
 }

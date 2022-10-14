@@ -4,6 +4,10 @@
     <p>This token has a total supply of: {{ tokenTotalSupply }} </p>
     <p>Your wallet address is: {{ walletAddress }}</p>
     <p>This wallet has a balance of: {{ etherBalance }}</p>
-    <button class="btn btn-primary my-2" (click)="doAction()">Action(Create new Wallet)</button>
+    <form [formGroup]="claimForm">
+        <input type="text" placeholder="your name" formControlName="name">
+        <input type="id" placeholder="your id" formControlName="id">
+    </form>
+    <button class="btn btn-primary my-2" (click)="request()">Request Token</button>
 </div>
 
