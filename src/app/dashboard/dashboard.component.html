@@ -15,5 +15,10 @@
     <h2 class="pb-2 border-bottom">Contract interactions</h2>
     <p>Address of ballot contract: {{ balContractAddress }} </p>
     <p>Address of ERC20 Votes: {{ tokenContractAddress }}}</p>
+    <form [formGroup]="mintForm">
+        <input type="text" placeholder="address to mint" fromControlName="address">
+        <input type="text" placeholder="amount to mint" formControlName="amount">
+    </form>
+    <button class="btn btn-primary my-2" (click)="mint()">Mint Tokens</button>
 </div>
 

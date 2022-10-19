@@ -22,6 +22,11 @@ export class DashboardComponent implements OnInit {
     id: [''],
   });
 
+  mintForm = this.fb.group({
+    address: [''],
+    amount: [''],
+  });
+
   constructor(private apiService: ApiService, private fb: FormBuilder) {
     this.tokenTotalSupply = "Loading.....";
     this.walletAddress = "Loading.....";
@@ -51,5 +56,10 @@ export class DashboardComponent implements OnInit {
   request() {
     const body = {name: this.claimForm.value.name, id: this.claimForm.value.id};
     this.apiService.requestTokens(body).subscribe((result) => {console.log(result)});
+  }
+
+  mint() {
+    const body = {address: this.mintForm.value.address, amount: this.mintForm.value.amount};
+    this.appService.mint(body).subscribe((result) => {console.log(result)})
   }
 }
