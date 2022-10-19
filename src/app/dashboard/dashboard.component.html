@@ -32,3 +32,13 @@
     <p class="col-md-8 fs-4">{{ voteReceipt }}</p>
 </div>
 
+<div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom">Delegate</h2>
+    <form [formGroup]="delegateForm">
+        <input placeholder="Address for delegation" formControlName="address">
+        <br><br>
+        <button class="btn btn-primary my-2" (click)="delegate()">Vote</button>
+    </form>
+    <p class="col-md-8 fs-4">{{ delegateReceipt }}</p>
+</div>
+

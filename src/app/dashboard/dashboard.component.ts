@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   provider: ethers.providers.BaseProvider;
   voteReceipt: string;
   mintReceipt: string;
+  delegateReceipt: string;
   proposal: string;
 
   claimForm = this.fb.group({
@@ -33,6 +34,10 @@ export class DashboardComponent implements OnInit {
   voteForm = this.fb.group({
     proposalIndex: [''],
     amount: [''],
+  });
+
+  delegateForm = this.fb.group({
+    address: [''],
   })
 
   constructor(private apiService: ApiService, private fb: FormBuilder) {
@@ -44,6 +49,7 @@ export class DashboardComponent implements OnInit {
     this.provider = ethers.getDefaultProvider("goerli");
     this.voteReceipt = "";
     this.mintReceipt = "";
+    this.delegateReceipt = "";
     this.proposal = "Loading......"
    }
 
@@ -62,14 +68,13 @@ export class DashboardComponent implements OnInit {
     this.provider.getBalance(this.walletAddress).then((balanceBN) => {
       this.etherBalance = ethers.utils.formatEther(balanceBN) + " ETH";
     });
-    this.apiService.getProposals().subscribe((response) => { this.proposal = response.result })
   }
 
   request() {
     const body = {name: this.claimForm.value.name, id: this.claimForm.value.id};
     this.apiService.requestTokens(body).subscribe((result) => {console.log(result)});
   }
-// Debug
+// Debug this---------------------------------------------------------
   async mint() {
     const body = {
       address: this.mintForm.value.address,
@@ -93,5 +98,20 @@ export class DashboardComponent implements OnInit {
       this.voteReceipt = response.result;
     });
   }
+
+  async delegate() {
+    const body = {
+      address: this.delegateForm.value.address,
+    };
+    this.apiService.delegate(body).subscribe((response) => {
+      console.log(response.result) 
+      this.delegateReceipt = response.result;
+    })
+  }
+
+  async checkVotingPower() {
+    
+  }
+
 
 }

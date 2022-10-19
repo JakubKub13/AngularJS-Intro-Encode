@@ -33,9 +33,12 @@ export class ApiService {
     return this.http.post("http://localhost:3000/vote", body)
   }
 
-  getProposals(): Observable<any> {
-    return this.http.get('http://localhost:3000/proposal')
+  delegate(body: any): Observable<any> {
+    return this.http.post("http://localhost:3000/delegate", body)
   }
 
+  checkVotingPower(address: any): Observable<any> {
+    return this.http.get(`http://localhost:3000/vote-power?address=${address}`)
+  }
 
 }
