@@ -10,6 +10,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
   tokenContractAddress: string;
+  balContractAddress: string;
   tokenTotalSupply: string;
   walletAddress: string;
   wallet: ethers.Wallet | undefined;
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
     this.walletAddress = "Loading.....";
     this.etherBalance = "Loading.....";
     this.tokenContractAddress = "";
+    this.balContractAddress= "";
     this.provider = ethers.getDefaultProvider("goerli");
    }
 
@@ -33,6 +35,9 @@ export class DashboardComponent implements OnInit {
     this.apiService.getContractAddress().subscribe((response) => {
       this.tokenContractAddress = response.result;
     });
+    this.apiService.getBalContractAddress().subscribe((response) => {
+      this.balContractAddress = response.result;
+    })
     this.apiService.getTotalSupply().subscribe((response) => {
       this.tokenTotalSupply = response.result + " Tokens";
     })
