@@ -25,7 +25,17 @@ export class ApiService {
     return this.http.get("http://localhost:3000/ballot-address");
   }
 
-  mint(body: any) {
+  mint(body: any): Observable<any> {
     return this.http.post("http://localhost:3000/mint", body)
   }
+
+  vote(body: any): Observable<any> {
+    return this.http.post("http://localhost:3000/vote", body)
+  }
+
+  getProposals(): Observable<any> {
+    return this.http.get('http://localhost:3000/proposal')
+  }
+
+
 }

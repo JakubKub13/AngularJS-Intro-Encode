@@ -4,6 +4,7 @@
     <p>This token has a total supply of: {{ tokenTotalSupply }} </p>
     <p>Your wallet address is: {{ walletAddress }}</p>
     <p>This wallet has a balance of: {{ etherBalance }}</p>
+    <p> Proposals are: {{ proposal }}</p>
     <form [formGroup]="claimForm">
         <input type="text" placeholder="your name" formControlName="name">
         <input type="id" placeholder="your id" formControlName="id">
@@ -13,14 +14,21 @@
 
 <div class="container px-4 py-5">
     <h2 class="pb-2 border-bottom">Mint</h2>
-    <p>Address of ballot contract: {{ balContractAddress }} </p>
-    <p>Address of ERC20 Votes: {{ tokenContractAddress }}}</p>
     <form [formGroup]="mintForm">
-        <input type="text" placeholder="address to mint" fromControlName="address">
-        <input type="amount" placeholder="amount to mint" formControlName="amount">
+        <input placeholder="address to mint" fromControlName="address">
+        <input placeholder="amount to mint" formControlName="amount">
     </form>
     <button class="btn btn-primary my-2" (click)="mint()">Mint Tokens</button>
 </div>
 
-
+<div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom">Vote</h2>
+    <form [formGroup]="voteForm">
+        <input placeholder="Proposal Index" formControlName="proposalIndex">
+        <input placeholder="Amount of vote" formControlName="amount">
+        <br><br>
+        <button class="btn btn-primary my-2" (click)="vote()">Vote</button>
+    </form>
+    <p class="col-md-8 fs-4">{{ voteReceipt }}</p>
+</div>
 
