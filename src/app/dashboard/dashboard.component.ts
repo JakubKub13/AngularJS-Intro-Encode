@@ -60,6 +60,6 @@ export class DashboardComponent implements OnInit {
 
   mint() {
     const body = {address: this.mintForm.value.address, amount: this.mintForm.value.amount};
-    this.appService.mint(body).subscribe((result) => {console.log(result)})
+    this.apiService.mint(body).subscribe((result) => {console.log(result)})
   }
 }
