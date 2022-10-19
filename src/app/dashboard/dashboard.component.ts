@@ -27,6 +27,10 @@ export class DashboardComponent implements OnInit {
     amount: [''],
   });
 
+  votePowerForm = this.fb.group({
+    address: [''],
+  })
+
   constructor(private apiService: ApiService, private fb: FormBuilder) {
     this.tokenTotalSupply = "Loading.....";
     this.walletAddress = "Loading.....";
@@ -62,4 +66,5 @@ export class DashboardComponent implements OnInit {
     const body = {address: this.mintForm.value.address, amount: this.mintForm.value.amount};
     this.apiService.mint(body).subscribe((result) => {console.log(result)})
   }
+
 }
