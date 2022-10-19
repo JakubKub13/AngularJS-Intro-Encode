@@ -24,4 +24,8 @@ export class ApiService {
   getBalContractAddress(): Observable<any> {
     return this.http.get("http://localhost:3000/ballot-address");
   }
+
+  mint(body: any) {
+    return this.http.post("http://localhost:3000/mint", body)
+  }
 }
